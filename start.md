@@ -1,6 +1,6 @@
-## DolphinDB单节点基本操作入门
+## DolphinDB单节点基本操作入门教程
 
-完成单节点安装后，可以直接通过web notebook或者gui连接到该节点上执行操作。单节点安装参考:https://2xdb.net/dolphindb/tutorials_cn/blob/master/standalone_server.md
+完成单节点安装后，可以直接通过web notebook或者gui连接到该节点上执行操作,单节点安装请参考:https://2xdb.net/dolphindb/tutorials_cn/blob/master/standalone_server.md
 
 ### 1. 创建/删除数据库
 #### 1.1 创建数据库
@@ -126,16 +126,16 @@
 
   * `DolphinDB` 是一款大数据系统，对批量插入有较好的支持
 
-    * 使用 `append!` 函数可直接将 `table_b` 的全部内容插入到 `table_a` 中
-    * 使用 `SQL` 中的聚集函数 `select count(*)` 查看前后 `table_a` 的大小
+    * 使用 `append!` 函数可直接将 `tb` 的全部内容插入到 `ta` 中
+    * 使用 `SQL` 中的聚集函数 `select count(*)` 查看前后 `ta` 的大小
 
     ```
-    table_a = loadTable(db, "t1")
-    table_b = loadTable(db, "t1")
-    select count(*) from table_a
-    select count(*) from table_b
-    table_a.append!(table_b)
-    select count(*) from table_a
+    ta = loadTable(db, "t1")
+    tb = loadTable(db, "t1")
+    select count(*) from ta
+    select count(*) from tb
+    ta.append!(tb)
+    select count(*) from ta
     ```
 
 * 更新操作
@@ -163,9 +163,9 @@
 
 ### 4. 更多高级内容
 
-  * dolphindb 是一款大数据分析系统，尤其擅长构建大规模集群对海量数据进行高效分析， __多结点集群构__ 建请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/multi_machine_cluster_deploy.md
+  * dolphindb 是一款大数据分析系统，尤其擅长构建大规模集群对海量数据进行高效分析， __多结点集群构建__ 请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/multi_machine_cluster_deploy.md
   * dolphindb 支持多种灵活的分区方式， 顺序分区，范围分区，值分区，列表分区，复合分区，以对业务数据进行均匀分割， __分区数据库__ 请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/database.md
   * dolphindb 也可以作为独立工作站使用，利用内存数据库的高性能，快速完成数据的加载，编辑和分析计算， __内存数据库计算__ 请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/partitioned_in_memory_table.md
-  * dolphindb 提供的脚本语言类似python + sql,易学，灵活，强大，可以快速实现业务的建模和数据分析， __dolphidnb脚本语言__ 请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/hybrid_programming_paradigms.md
+  * dolphindb 提供的脚本语言类似python + sql,易学，灵活，强大，可以快速实现业务的建模和数据分析， __dolphindb脚本语言__ 请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/hybrid_programming_paradigms.md
   * dolphindb 也提供了强大灵活安全的权限控制系统，以满足企业级安全配置， __权限与安全配置__ 参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/ACL_and_Security.md
 
