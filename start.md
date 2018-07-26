@@ -1,27 +1,28 @@
 ## DolphinDB单节点基本操作入门教程
 
-完成单节点安装后，可以直接通过web notebook或者gui连接到该节点上执行操作,单节点安装请参考:https://2xdb.net/dolphindb/tutorials_cn/blob/master/standalone_server.md
+本文档适用于完成单节点安装后，通过web notebook或者gui连接到节点上，进行DolphinDB的基础操作。单节点安装请参考:https://2xdb.net/dolphindb/tutorials_cn/blob/master/standalone_server.md
 
 ### 1. 创建/删除数据库
 #### 1.1 创建数据库
   ```
   db = database("C:/DolphinDB")
   ```
-  * 若目录C:/DolphinDB不存在，则创建该文件目录，并且作为该数据库ID
-  * 若目录C:/DolphinDB存在，且只包含 `DolphinDB` 类型的表及相关文件，则会打开该数据库
-  * 若目录C:/DolphinDB存在，但包含的不是 `DolphinDB` 类型的表及相关文件，则抛出异常
+  * 若目录C:/DolphinDB不存在，则自动创建该文件目录，并且作为该数据库ID，数据库成功创建并打开
+  * 若目录C:/DolphinDB存在，且只包含`DolphinDB`类型的表及相关文件，则会打开该数据库
+  * 若目录C:/DolphinDB存在，但包含的不是`DolphinDB`类型的表及相关文件，则数据库创建失败。需要清空`DophinDB`目录再次尝试。
 
 #### 1.2. 删除数据库
   ```
   dropDatabase("C:/DolphinDB")
   ```
-   * 以数据库的ID,即创建数据库时传入的路径作为参数
+   * 函数dropDatabase以数据库的ID作为参数
 
 ### 2. 创建/删除表
-
-  下面介绍三种构建表的方法，a）用table函数创建表；b）用loadTable从database中加载表；c）用loadText将磁盘上的csv文件转换为表
-  
 #### 2.1 创建表并保存到数据库
+
+  下面介绍三种构建表的方法，a）table函数创建内存表；b）loadTable从database中加载表；c）loadText将磁盘上的csv文件转换为表
+  
+##### 2.1.1 用table函数创建内存表
 
 * 创建一个简单内存表
   ```
@@ -43,7 +44,7 @@
   * 在数据库路径下，生成了 `t1.tbl` 的表文件和 `t1` 的文件夹
   * 在 `t1` 文件夹下，生成了 `id.col`、`x.col`、`y.col` 三个列文件，分别存储表 `t1` 的三列
 
-#### 2.2 从磁盘上读取表到内存中
+##### 2.1.2 loadTable从database中加载表
 * 获取已存在的数据库的句柄
   ```
   db = database("C:/DolphinDB")
@@ -62,7 +63,7 @@
   ```
   typestr(t)
   ```
-#### 2.3. 从磁盘上加载csv文件
+##### 2.1.3 loadText将磁盘上的csv文件转换为表
    
   假设有一个位于C盘的test.csv文件，我们需要把它加载到内存中。
   ```
@@ -71,7 +72,7 @@
   * loadTest把csv文件转换为dolphindb的内存表，默认列以逗号(,)分割
   * t为内存表
    
-#### 2.4. 删除数据库中的表
+#### 2.2 删除数据库中的表
   ```
   db = database("C:/DolphinDB")
   dropTable(db, "tname"); 
@@ -120,10 +121,11 @@
   * 若需要对修改的表进行持久化，修改表后使用 `savaTable(db, t)` 函数
 
 ### 4. 更多高级内容
-
-  * dolphindb 是一款大数据分析系统，尤其擅长构建大规模集群对海量数据进行高效分析， __多结点集群构建__ 请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/multi_machine_cluster_deploy.md
-  * dolphindb 支持多种灵活的分区方式， 顺序分区，范围分区，值分区，列表分区，复合分区，以对业务数据进行均匀分割， __分区数据库__ 请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/database.md
-  * dolphindb 也可以作为独立工作站使用，利用内存数据库的高性能，快速完成数据的加载，编辑和分析计算， __内存数据库计算__ 请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/partitioned_in_memory_table.md
-  * dolphindb 提供的脚本语言类似python + sql,易学，灵活，强大，可以快速实现业务的建模和数据分析， __dolphindb脚本语言__ 请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/hybrid_programming_paradigms.md
-  * dolphindb 也提供了强大灵活安全的权限控制系统，以满足企业级安全配置， __权限与安全配置__ 参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/ACL_and_Security.md
-
+  * __独立服务器__ ,作为一个独立的工作站或服务器使用，无需配置。 详见教程:https://github.com/dolphindb/Tutorials_CN/blob/master/standalone_server.md
+  * __单机集群搭建__ ,控制节点(controller)、代理节点（ agent）、数据节点(data node)部署在同一个物理机器上，详见教程:https://github.com/dolphindb/Tutorials_CN/blob/master/single_machine_cluster_deploy.md
+  * __多机集群搭建__ ,在多个物理机器上部署 DolphinDB 集群。 详见教程:https://github.com/dolphindb/Tutorials_CN/blob/master/multi_machine_cluster_deploy.md
+  * __内存数据库计算__ ,作为独立工作站使用，利用内存数据库的高性能，快速完成数据的加载，编辑和分析计算,详见教程：https://2xdb.net/dolphindb/tutorials_cn/blob/master/partitioned_in_memory_table.md
+  * __分区数据库__ ，支持多种灵活的分区方式， 顺序分区，范围分区，值分区，列表分区，复合分区，详见教程:https://2xdb.net/dolphindb/tutorials_cn/blob/master/database.md
+  * __脚本语言__ ，提供的脚本语言类似python + sql,易学，灵活，丰富的内置函数，详见教程：https://2xdb.net/dolphindb/tutorials_cn/blob/master/hybrid_programming_paradigms.md
+  * __权限与安全配置__ ,提供了强大、灵活、安全的权限控制系统，以满足企业级各种应用场景，详见教程：https://2xdb.net/dolphindb/tutorials_cn/blob/master/ACL_and_Security.md
+  
