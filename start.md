@@ -1,8 +1,9 @@
-##                                       Single Node Tutorial
+##                                        DolphinDB Single Node Tutorial
 
   完成单节点安装后，可以直接通过web notebook或者gui连接到该节点上执行操作。单节点安装参考:xxx
 
-### 1. 创建数据库
+### 1. 创建/删除数据库
+#### 1.1 创建数据库
   ```
   db = database("C:/DolphinDB")
   ```
@@ -11,13 +12,17 @@
   * 若目录C:/DolphinDB存在，且只包含 `DolphinDB` 类型的表及相关文件，则会打开该数据库
   * 若目录C:/DolphinDB存在，但包含的不是 `DolphinDB` 类型的表及相关文件，则抛出异常
 
-### 2. 删除数据库
+#### 1.2. 删除数据库
   ```
   dropDatabase("C:/DolphinDB")
   ```
    * 以数据库的ID,即创建数据库时传入的路径作为参数
 
-### 3. 创建内存表并保存到数据库
+### 2. 创建/删除表
+
+  下面介绍三种构建表的方法，a）用table函数创建表；b）用loadTable从database中加载表；c）用loadText将磁盘上的csv文件转换为表
+  
+#### 2.1 创建表并保存到数据库
 
 * 创建一个简单内存表
 
@@ -48,7 +53,7 @@
 
 ---
 
-### 4. 从磁盘上读取表到内存中
+#### 2.2 从磁盘上读取表到内存中
 
 * 获取已存在的数据库的句柄
 
@@ -77,16 +82,7 @@
   typestr(t)
   ```
   
-### 5. 删除数据库中的表
-
-  ```
-  db = database("C:/DolphinDB")
-  dropTable(db, "tname"); 
-  ```
-  * dropTable删除数据库中的表，第一个参数为db handle; 第二个参数为表名(字符串）
-
-  
-### 6. 从磁盘上加载csv文件到dolphindb数据库
+#### 2.3. 从磁盘上加载csv文件
    
   假设有一个位于C盘的test.csv文件，我们需要把它加载到内存中。
   ```
@@ -94,8 +90,18 @@
   ```
   * loadTest把csv文件转换为dolphindb的内存表，默认列以逗号(,)分割
   * t为内存表
+  
+   
+#### 2.4. 删除数据库中的表
 
-### 7. 表的增删改查 
+  ```
+  db = database("C:/DolphinDB")
+  dropTable(db, "tname"); 
+  ```
+  * dropTable删除数据库中的表，第一个参数为db handle; 第二个参数为表名(字符串）
+
+
+### 3. 内存表的增删改查 
   
   按照标准的sql语言操作
 
@@ -155,5 +161,10 @@
   * 由于我们操作的表 __位于内存__ 中，因此上述的表修改操作 __没有被记录到磁盘上__
   * 若需要对修改的表进行持久化，修改表后使用 `savaTable(db, t)` 函数
 
-### 8. 表的增删改查 
+### 4. 更多高级内容
+  * dolphindb 是一款大数据分析系统，尤其擅长构建大规模集群对海量数据进行高效分析，多结点集群构建请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/multi_machine_cluster_deploy.md
+  * dolphindb 支持多种灵活的分区方式， 顺序分区，范围分区，值分区，列表分区，复合分区，以对业务数据进行均匀分割，分区数据库请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/database.md
+  * dolphindb 也可以作为独立工作站使用，利用内存数据库的高性能，快速完成数据的加载，编辑和分析计算，具体请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/partitioned_in_memory_table.md
+  * dolphindb 提供的脚本语言类似python + sql,易学，灵活，强大，可以快速实现业务的建模和数据分析，具体请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/hybrid_programming_paradigms.md
+  * dolphindb 也提供了强大灵活安全的权限控制系统，以满足企业级安全配置，具体请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/ACL_and_Security.md
 
