@@ -2,25 +2,25 @@
 本文档适用于完成单节点安装后，通过web notebook或者gui连接到节点上，进行DolphinDB的基础操作。单节点安装请参考:https://2xdb.net/dolphindb/tutorials_cn/blob/master/standalone_server.md
 ### 1. 创建/删除数据库
 #### 1.1 创建数据库
-	  ``` 
+	  ```  
 	  db = database("C:/DolphinDB")
-	  ``` 
+	  ```  
   * 若目录C:/DolphinDB不存在，则自动创建该文件目录，并且作为该数据库ID，数据库成功创建并打开
   * 若目录C:/DolphinDB存在，且只包含`DolphinDB`类型的表及相关文件，则会打开该数据库
   * 若目录C:/DolphinDB存在，但包含的不是`DolphinDB`类型的表及相关文件，则数据库创建失败。需要清空`DophinDB`目录再次尝试。
 #### 1.2. 删除数据库
-	  ``` 
+	  ```  
 	  dropDatabase("C:/DolphinDB")
-	  ``` 
+	  ```  
    * 函数dropDatabase以数据库的ID作为参数
 ### 2. 创建/删除表
 #### 2.1 创建表并保存到数据库
   下面介绍三种构建表的方法，a）table函数创建内存表；b）loadTable从database中加载表；c）loadText将磁盘上的csv文件转换为表
 ##### 2.1.1 用table函数创建内存表
 * 创建一个简单内存表
-	  ``` 
+	  ```  
 	  t1 = table(take(1..10, 100) as id, rand(10, 100) as x, rand(10.0, 100) as y)
-	  ``` 
+	  ```  
   * 使用 `table` 函数建立内存表，包含 `id`、`x`、`y` 三列，共 _100_ 行
   * __注意__ ： `t`  是一张 __内存表__ ，因此不会保存在磁盘上
 
