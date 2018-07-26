@@ -162,9 +162,10 @@
   * 若需要对修改的表进行持久化，修改表后使用 `savaTable(db, t)` 函数
 
 ### 4. 更多高级内容
-  * dolphindb 是一款大数据分析系统，尤其擅长构建大规模集群对海量数据进行高效分析，多结点集群构建请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/multi_machine_cluster_deploy.md
-  * dolphindb 支持多种灵活的分区方式， 顺序分区，范围分区，值分区，列表分区，复合分区，以对业务数据进行均匀分割，分区数据库请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/database.md
-  * dolphindb 也可以作为独立工作站使用，利用内存数据库的高性能，快速完成数据的加载，编辑和分析计算，具体请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/partitioned_in_memory_table.md
-  * dolphindb 提供的脚本语言类似python + sql,易学，灵活，强大，可以快速实现业务的建模和数据分析，具体请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/hybrid_programming_paradigms.md
-  * dolphindb 也提供了强大灵活安全的权限控制系统，以满足企业级安全配置，具体请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/ACL_and_Security.md
+
+  * dolphindb 是一款大数据分析系统，尤其擅长构建大规模集群对海量数据进行高效分析， __多结点集群构__ 建请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/multi_machine_cluster_deploy.md
+  * dolphindb 支持多种灵活的分区方式， 顺序分区，范围分区，值分区，列表分区，复合分区，以对业务数据进行均匀分割， __分区数据库__ 请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/database.md
+  * dolphindb 也可以作为独立工作站使用，利用内存数据库的高性能，快速完成数据的加载，编辑和分析计算， __内存数据库计算__ 请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/partitioned_in_memory_table.md
+  * dolphindb 提供的脚本语言类似python + sql,易学，灵活，强大，可以快速实现业务的建模和数据分析， __dolphidnb脚本语言__ 请参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/hybrid_programming_paradigms.md
+  * dolphindb 也提供了强大灵活安全的权限控制系统，以满足企业级安全配置， __权限与安全配置__ 参考：https://2xdb.net/dolphindb/tutorials_cn/blob/master/ACL_and_Security.md
 
