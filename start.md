@@ -1,6 +1,6 @@
 ##                                        DolphinDB Single Node Tutorial
 
-  完成单节点安装后，可以直接通过web notebook或者gui连接到该节点上执行操作。单节点安装参考:xxx
+  完成单节点安装后，可以直接通过web notebook或者gui连接到该节点上执行操作。单节点安装参考:https://2xdb.net/dolphindb/tutorials_cn/blob/master/standalone_server.md
 
 ### 1. 创建/删除数据库
 #### 1.1 创建数据库
