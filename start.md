@@ -1,7 +1,5 @@
 ## DolphinDB单节点基本操作入门教程
-
 本文档适用于完成单节点安装后，通过web notebook或者gui连接到节点上，进行DolphinDB的基础操作。单节点安装请参考:https://2xdb.net/dolphindb/tutorials_cn/blob/master/standalone_server.md
-
 ### 1. 创建/删除数据库
 #### 1.1 创建数据库
   ```
@@ -10,20 +8,15 @@
   * 若目录C:/DolphinDB不存在，则自动创建该文件目录，并且作为该数据库ID，数据库成功创建并打开
   * 若目录C:/DolphinDB存在，且只包含`DolphinDB`类型的表及相关文件，则会打开该数据库
   * 若目录C:/DolphinDB存在，但包含的不是`DolphinDB`类型的表及相关文件，则数据库创建失败。需要清空`DophinDB`目录再次尝试。
-
 #### 1.2. 删除数据库
   ```
   dropDatabase("C:/DolphinDB")
   ```
    * 函数dropDatabase以数据库的ID作为参数
-
 ### 2. 创建/删除表
 #### 2.1 创建表并保存到数据库
-
   下面介绍三种构建表的方法，a）table函数创建内存表；b）loadTable从database中加载表；c）loadText将磁盘上的csv文件转换为表
-  
 ##### 2.1.1 用table函数创建内存表
-
 * 创建一个简单内存表
   ```
   t1 = table(take(1..10, 100) as id, rand(10, 100) as x, rand(10.0, 100) as y)
@@ -43,7 +36,6 @@
   * 使用 `saveTable`  函数将内存表 `t1`  保存到数据库 `db` 中 （默认以表名存入磁盘）
   * 在数据库路径下，生成了 `t1.tbl` 的表文件和 `t1` 的文件夹
   * 在 `t1` 文件夹下，生成了 `id.col`、`x.col`、`y.col` 三个列文件，分别存储表 `t1` 的三列
-
 ##### 2.1.2 loadTable从database中加载表
 * 获取已存在的数据库的句柄
   ```
@@ -64,21 +56,18 @@
   typestr(t)
   ```
 ##### 2.1.3 loadText将磁盘上的csv文件转换为表
-   
   假设有一个位于C盘的test.csv文件，我们需要把它加载到内存中。
   ```
   t = loadText(C:/test.csv)
   ```
   * loadTest把csv文件转换为dolphindb的内存表，默认列以逗号(,)分割
   * t为内存表
-   
 #### 2.2 删除数据库中的表
   ```
   db = database("C:/DolphinDB")
   dropTable(db, "tname"); 
   ```
   * dropTable删除数据库中的表，第一个参数为db handle; 第二个参数为表名(字符串）
-
 ### 3. 内存表的增删改查 
   按照标准的sql语言操作
 * 查询操作
